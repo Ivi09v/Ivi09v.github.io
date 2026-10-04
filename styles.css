@@ -1,0 +1,277 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f5e1ce; /* Color Beige claro de la paleta oficial */
+    color: #3c0000;          /* Carmín ultra oscuro para máxima legibilidad de texto */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* ==========================================================================
+   2. MAQUETACIÓN DEL ENCABEZADO (HEADER & NAV)
+   ========================================================================== */
+header {
+    background-color: #ffffff;
+    padding: 15px 30px;
+    box-shadow: 0 4px 6px rgba(60, 0, 0, 0.05);
+    border-bottom: 3px solid #960018; /* Línea divisoria en Carmín vibrante */
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-img {
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+header h1 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #3c0000;
+    letter-spacing: 1px;
+}
+
+/* Estilos de la lista de navegación semántica */
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #670010; /* Carmín intermedio */
+    font-weight: 600;
+    font-size: 1rem;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: #960018; /* Iluminación carmín activa al pasar cursor */
+}
+
+.header-right {
+    color: #670010;
+}
+
+/* ==========================================================================
+   3. ÁREA DE CONTENIDO CENTRAL (MAIN & CARDS)
+   ========================================================================== */
+main {
+    flex-grow: 1;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-section {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+main h2 {
+    font-size: 2.3rem;
+    color: #3c0000;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.hero-section p {
+    color: #670010;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* Cuadrícula de tarjetas adaptativa */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    width: 100%;
+    max-width: 900px;
+}
+
+/* Tarjetas individuales con diseño interno mejorado e iconos */
+.service-card {
+    background-color: #ffffff;
+    border: 1px solid rgba(150, 0, 24, 0.1); 
+    border-radius: 16px; 
+    padding: 24px;
+    box-shadow: 0 8px 20px rgba(60, 0, 0, 0.02); 
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: all 0.25s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(150, 0, 24, 0.08);
+    border-color: #960018;
+}
+
+/* Caja contenedora para el nuevo icono de cada sección */
+.card-icon {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(150, 0, 24, 0.06); 
+    color: #960018; 
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 4px;
+}
+
+.service-card h3 {
+    font-size: 1.25rem;
+    color: #3c0000;
+    margin-bottom: 4px;
+}
+
+.service-card p {
+    font-size: 0.9rem;
+    color: #555555;
+    line-height: 1.4;
+}
+
+/* Botones Premium con un hermoso degradado de color */
+.menu-button {
+    background: linear-gradient(135deg, #960018 0%, #670010 100%); 
+    color: #ffffff; 
+    border: none;
+    padding: 12px 20px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(150, 0, 24, 0.15);
+    margin-top: auto; 
+}
+
+.menu-button:hover {
+    background: linear-gradient(135deg, #b90022 0%, #800016 100%); 
+    box-shadow: 0 6px 14px rgba(150, 0, 24, 0.25);
+}
+
+/* ==========================================================================
+   4. COMPONENTE DE ASISTENCIA FLOTANTE (ASIDE)
+   ========================================================================== */
+.chat-widget {
+    position: fixed;
+    bottom: 80px;
+    right: 30px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.chat-bubble {
+    background-color: #ffffff;
+    padding: 10px 18px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(60, 0, 0, 0.1);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #670010;
+    border: 1px solid #e8c39e;
+    position: relative;
+}
+
+/* Construcción geométrica de la flecha de la burbuja de diálogo */
+.chat-bubble::after {
+    content: '';
+    position: absolute;
+    right: -8px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-width: 8px 0 8px 8px;
+    border-style: solid;
+    border-color: transparent transparent transparent #ffffff;
+}
+
+.avatar-container {
+    width: 60px;
+    height: 60px;
+    background-color: #e8c39e;
+    border-radius: 50%;
+    border: 3px solid #960018;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(150, 0, 24, 0.15);
+    transition: transform 0.2s ease;
+}
+
+/* Centra el nuevo SVG perfectamente en el círculo */
+.cat-face {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.chat-widget:hover .avatar-container {
+    transform: scale(1.08);
+}
+
+/* ==========================================================================
+   5. PIE DE PÁGINA (FOOTER)
+   ========================================================================== */
+footer {
+    background-color: #3c0000; /* Fondo obscuro institucional */
+    color: #f5e1ce;          /* Texto en contraste claro */
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9rem;
+    border-top: 3px solid #670010;
+}
+
+/* ==========================================================================
+   6. RESPONSIVIDAD (MEDIA QUERIES)
+   ========================================================================== */
+@media (max-width: 768px) {
+    main h2 { font-size: 1.9rem; }
+    
+    .menu-grid {
+        grid-template-columns: 1fr; /* Colapsa la cuadrícula a 1 columna en móviles */
+        gap: 15px;
+    }
+    
+    .chat-bubble {
+        display: none; /* Oculta texto de soporte para optimizar espacio táctil */
+    }
+    
+    .chat-widget {
+        bottom: 75px;
+        right: 15px;
+    }
+}

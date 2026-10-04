@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COPACI - Granjas Guadalupe</title>
+    <!-- Vinculación de la hoja de estilos externa requerida en la rúbrica -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- ==========================================
+         ENCABEZADO PRINCIPAL (HEADER)
+         Contiene la identidad institucional y navegación
+         ========================================== -->
+    <header>
+        <div class="header-container">
+            <!-- Bloque del logotipo y nombre oficial -->
+            <div class="brand">
+                <!-- Imagen integrada del logotipo oficial del organismo -->
+                <img src="COPACIlogo.png" alt="logo COPACI" class="logo-img" style="max-height: 40px; width: auto;">
+                <h1>COPACI</h1>
+            </div>
+
+            <!-- Menú de navegación semántico requerido -->
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#tramites">Trámites</a></li>
+                    <li><a href="#comunicados">Comunicados</a></li>
+                </ul>
+            </nav>
+
+            <!-- Icono complementario de seguridad/escudo -->
+            <div class="header-right">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==========================================
+         CONTENIDO PRINCIPAL DEL SISTEMA (MAIN)
+         Organiza modularmente las secciones de la app web
+         ========================================== -->
+    <main>
+        
+        <!-- Sección de bienvenida y título dinámico -->
+        <section class="hero-section">
+            <h2>¿Qué quieres hacer hoy?</h2>
+            <p>Portal de Gestión Ciudadana - Granjas Guadalupe</p>
+        </section>
+
+        <!-- Sección de servicios organizada en cuadrícula semántica -->
+        <section id="tramites" class="services-section">
+            <div class="menu-grid">
+                
+                <!-- Artículo 1: Gestión de trámites generales -->
+                <article class="service-card">
+                    <div class="card-icon">
+                        <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    </div>
+                    <div class="card-content">
+                        <h3>Trámites y Servicios</h3>
+                        <p>Consulta requisitos, costos y horarios de atención vecinal.</p>
+                    </div>
+                    <button class="menu-button">Consultar</button>
+                </article>
+
+                <!-- Artículo 2: Solicitud de constancias del vecindario -->
+                <article class="service-card">
+                    <div class="card-icon">
+                        <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                    </div>
+                    <div class="card-content">
+                        <h3>Constancia Domiciliaria</h3>
+                        <p>Inicia la solicitud digital para comprobar tu residencia local.</p>
+                    </div>
+                    <button class="menu-button">Tramitar</button>
+                </article>
+
+                <!-- Artículo 3: Sistema de incidencias y reportes -->
+                <article class="service-card">
+                    <div class="card-icon">
+                        <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                    </div>
+                    <div class="card-content">
+                        <h3>Reporte Ciudadano</h3>
+                        <p>Reporta fallas de alumbrado, baches o servicios públicos.</p>
+                    </div>
+                    <button class="menu-button">Reportar</button>
+                </article>
+
+                <!-- Artículo 4: Avisos de la administración pública -->
+                <article class="service-card">
+                    <div class="card-icon">
+                        <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                    </div>
+                    <div class="card-content">
+                        <h3>Comunicados Oficiales</h3>
+                        <p>Mantente al tanto de las juntas y avisos comunitarios.</p>
+                    </div>
+                    <button class="menu-button">Ver Avisos</button>
+                </article>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ==========================================
+         BARRA LATERAL / WIDGET DE SOPORTE (ASIDE)
+         Elemento flotante interactivo para atención al ciudadano
+         ========================================== -->
+    <aside class="chat-widget" onclick="alert('Conectando con un operador de COPACI Granjas Guadalupe...')">
+        <div class="chat-bubble">Habla con un operador</div>
+        <div class="avatar-container">
+            <div class="cat-face">
+                <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="#3c0000" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4.5 9.5C3 11.2 2 13.5 2 16c0 5.5 4.5 10 10 10s10-4.5 10-10c0-2.5-1-4.8-2.5-6.5L20 3.5l-4.2 3.8C14.6 7 13.3 6.8 12 6.8s-2.6.2-3.8.5L4 3.5l.5 6z" />
+                    <circle cx="7.5" cy="14" r="1" fill="#3c0000" />
+                    <circle cx="16.5" cy="14" r="1" fill="#3c0000" />
+                    <polygon points="12,16 10.5,15 13.5,15" fill="#3c0000" />
+                    <path d="M9.5 18c1 1.2 2.5 0 2.5 0s1.5 1.2 2.5 0" />
+                    <line x1="5" y1="16" x2="1" y2="15.5" />
+                    <line x1="5" y1="18" x2="1" y2="18.5" />
+                    <line x1="19" y1="16" x2="23" y2="15.5" />
+                    <line x1="19" y1="18" x2="23" y2="18.5" />
+                </svg>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ==========================================
+         PIE DE PÁGINA INSTITUCIONAL (FOOTER)
+         Contiene los derechos de autor y propiedad del sistema
+         ========================================== -->
+    <footer>
+        <p>© 2026. Gestión ciudadana. Derechos reservados VIAR - COPACI Granjas Guadalupe</p>
+    </footer>
+
+</body>
+</html>
