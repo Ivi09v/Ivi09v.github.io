@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COPACI - Granjas Guadalupe</title>
+    <!-- Contenedor maestro donde se inyecta tu diseño css -->
+    <style id="estilos-institucionales-target"></style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="brand">
+                <img src="COPACIlogo.png" alt="Logo COPACI" class="logo-img" width="40" height="40">
+                <h1>COPACI</h1>
+            </div>
+            <!-- El menú inicia oculto hasta el Login -->
+            <nav id="navegacion-principal" class="hidden">
+                <ul class="nav-links">
+                    <li><a href="#seccion-hero">Inicio</a></li>
+                    <li><a href="#contenedor-servicios">Trámites y Reportes</a></li>
+                    <li><a href="#contenedor-tabla">Historial</a></li>
+                </ul>
+            </nav>
+            <div class="header-right" id="sesion-status">Invitado</div>
+        </div>
+    </header>
+    <main>
+        <div class="hero-section" id="seccion-hero">
+            <h2>¿Qué quieres hacer hoy?</h2>
+            <p>Portal de Gestión Ciudadana - Granjas Guadalupe</p>
+        </div>
+
+        <!-- BOTONES DE ACCESO INICIAL -->
+        <div id="zona-login-principal" style="margin-bottom: 30px; text-align: center; width: 100%; max-width: 900px; display: flex; gap: 15px; justify-content: center;">
+            <button class="menu-button" id="btn-portal-ingreso" onclick="abrirModalLogin()">Iniciar Sesión</button>
+            <button class="menu-button" id="btn-portal-registro" onclick="abrirModalRegistro()" style="background: linear-gradient(135deg, #e8c39e 0%, #3c0000 100%);">Registrarse como Vecino</button>
+        </div>
+
+        <!-- SECCIÓN DE MENÚ -->
+        <div class="menu-grid hidden" id="contenedor-servicios">
+            <div class="service-card" id="tarjeta-constancias">
+                <div class="card-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                </div>
+                <h3>Constancia Domiciliaria</h3>
+                <p>Inicia la solicitud digital para comprobar tu residencia local.</p>
+                <button class="menu-button" onclick="abrirModalConstancia()">Tramitar Constancia</button>
+            </div>
+
+            <div class="service-card" id="tarjeta-reportes">
+                <div class="card-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line></svg>
+                </div>
+                <h3>Reporte Ciudadano</h3>
+                <p>Reporta fallas de alumbrado, baches o servicios públicos.</p>
+                <button class="menu-button" onclick="abrirModalReporte()">Reportar Falla</button>
+            </div>
+        </div>
+        <!-- VISTA PREVIA DE COMPROBANTE / CONSTANCIA -->
+        <div id="contenedor-comprobante" class="hidden" style="width: 100%; max-width: 600px; background: #fff; padding: 30px; border: 2px dashed #960018; border-radius: 8px; margin-bottom: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+            <div style="text-align: center; border-bottom: 2px solid #3c0000; padding-bottom: 10px; margin-bottom: 20px;">
+                <h2 style="color: #960018; margin: 0;">COMPROBANTE DE TRÁMITE DIGITAL</h2>
+                <small>Comité de Participación Ciudadana (COPACI) - Granjas Guadalupe</small>
+            </div>
+            <p><strong>Folio Único:</strong> <span id="comp-folio" style="color: #960018; font-weight: bold;"></span></p>
+            <p><strong>Solicitante:</strong> <span id="comp-nombre"></span></p>
+            <p><strong>Dirección Registrada:</strong> <span id="comp-direccion"></span></p>
+            <p><strong>Fecha de Expedición:</strong> <span id="comp-fecha"></span></p>
+            <p><strong>Motivo / Propósito del trámite:</strong> <span id="comp-motivo"></span></p>
+            <p><strong>Estatus del Trámite:</strong> <span style="background-color: #ffeeba; color: #856404; padding: 2px 6px; border-radius: 4px; font-weight: bold;">Pendiente de Firma</span></p>
+            
+            <div style="margin-top: 40px; display: flex; justify-content: space-between; align-items: center; padding: 0 20px;">
+                <div style="text-align: center; width: 45%;">
+                    <div style="height: 60px; border-bottom: 1px dashed #555;"></div>
+                    <p style="font-size: 0.8rem; margin-top: 5px;">Firma del Solicitante</p>
+                </div>
+                <div style="text-align: center; width: 45%; border: 1px solid #3c0000; padding: 10px; border-radius: 4px; background: #fdfaf7;">
+                    <span style="font-size: 0.75rem; color: #670010; font-weight: bold; letter-spacing: 1px;">SELLO COPACI<br>GRANJAS GUADALUPE</span>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 25px;">
+                <button class="btn-secondary" onclick="document.getElementById('contenedor-comprobante').classList.add('hidden')">Cerrar Vista Previa</button>
+            </div>
+        </div>
+
+        <!-- TABLA SEGUIMIENTO -->
+        <section class="table-section hidden" id="contenedor-tabla">
+            <div class="table-header-flex">
+                <h3 id="titulo-tabla-dinamico">Historial de Solicitudes</h3>
+                <select id="filtroEstado" class="filter-select" onchange="filtrarYMostrarTabla()">
+                    <option value="Todos">Ver todos los estados</option>
+                    <option value="Pendiente">Solo Pendientes</option>
+                    <option value="Atendido">Solo Atendidos</option>
+                </select>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Folio</th>
+                            <th>Usuario</th>
+                            <th>Tipo</th>
+                            <th>Descripción / Detalles</th>
+                            <th>Ubicación</th>
+                            <th>Estado</th>
+                            <th>Fecha</th>
+                            <th class="col-gestion-admin">Acción (Admin)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-solicitudes-body"></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+    <!-- MODAL DE REGISTRO (SIGN UP) -->
+    <div class="modal-overlay" id="modalRegistro">
+        <div class="modal-box">
+            <h3>Registro de Nuevo Vecino</h3>
+            <form id="formRegistro" onsubmit="procesarRegistro(event)">
+                <div class="form-group">
+                    <label for="regNombre">Nombre Completo</label>
+                    <input type="text" id="regNombre" placeholder="Ej: Juan Pérez López" required>
+                </div>
+                <div class="form-group">
+                    <label for="regDireccion">Dirección / Calle y Número</label>
+                    <input type="text" id="regDireccion" placeholder="Ej: Av. Juárez #24" required>
+                </div>
+                <div class="form-group">
+                    <label for="regCorreo">Correo Electrónico</label>
+                    <input type="email" id="regCorreo" placeholder="correo@ejemplo.com" required>
+                </div>
+                <div class="form-group" style="position: relative;">
+                    <label for="regContrasena">Contraseña</label>
+                    <div style="position: relative; display: flex; align-items: center;">
+                        <input type="password" id="regContrasena" placeholder="Cree una contraseña segura" style="width: 100%; padding-right: 40px;" required>
+                        <button type="button" onclick="alternarVisibilidadPassword('regContrasena', this)" style="position: absolute; right: 10px; background: none; border: none; cursor: pointer; color: #670010; display: flex; align-items: center; justify-content: center; padding: 0;">
+                            <svg class="ojo-icono" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" onclick="cerrarModalRegistro()">Cancelar</button>
+                    <button type="submit" class="menu-button" style="width: auto; margin-top: 0;">Registrarme</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL DE INICIO DE SESIÓN (LOGIN) -->
+    <div class="modal-overlay" id="modalLogin">
+        <div class="modal-box">
+            <h3>Identificación de Usuario</h3>
+            <form id="formLogin" onsubmit="procesarLogin(event)">
+                <div class="form-group">
+                    <label for="loginUsuario">Correo Electrónico registrado</label>
+                    <input type="email" id="loginUsuario" placeholder="correo@ejemplo.com" required>
+                </div>
+                <div class="form-group" style="position: relative;">
+                    <label for="loginContrasena">Contraseña</label>
+                    <div style="position: relative; display: flex; align-items: center;">
+                        <input type="password" id="loginContrasena" placeholder="Ingrese su clave de acceso" style="width: 100%; padding-right: 40px;" required>
+                        <button type="button" onclick="alternarVisibilidadPassword('loginContrasena', this)" style="position: absolute; right: 10px; background: none; border: none; cursor: pointer; color: #670010; display: flex; align-items: center; justify-content: center; padding: 0;">
+                            <svg class="ojo-icono" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                        </button>
+                    </div>
+                </div>
+                <div style="font-size: 0.8rem; color: #670010; margin-bottom: 15px; line-height: 1.3;">
+                    <strong>Cuentas Administrativas Fijas:</strong><br>
+                    Admin: <code>admin@copaci.com</code> / Clave: <code>admin123</code><br>
+                    Mesa COPACI: <code>comite@copaci.com</code> / Clave: <code>copaci2026</code>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" onclick="cerrarModalLogin()">Cancelar</button>
+                    <button type="submit" class="menu-button" style="width: auto; margin-top: 0;">Ingresar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL DE REPORTE URBANO ADAPTATIVO -->
+    <div class="modal-overlay" id="modalReporte">
+        <div class="modal-box">
+            <h3>Nueva Solicitud / Reporte Urbano</h3>
+            <form id="formSolicitud" onsubmit="procesarFormulario(event)">
+                <div class="form-group">
+                    <label for="tipoReporte">Tipo de Falla / Servicio</label>
+                    <select id="tipoReporte" onchange="adaptarFormularioReporte()" required>
+                        <option value="Bacheo">Bacheo de vialidad</option>
+                        <option value="Luminaria">Falla de Luminaria / Alumbrado</option>
+                        <option value="Otros">Otros Servicios Públicos</option>
+                    </select>
+                </div>
+                <div class="form-group" id="grupo-gravedad">
+                    <label for="gravedadBacheo">Nivel de Gravedad del Bache</label>
+                    <select id="gravedadBacheo">
+                        <option value="Bajo">Bajo (Agrietamiento superficial)</option>
+                        <option value="Medio">Medio (Desgaste considerable)</option>
+                        <option value="Alto">Alto (Riesgo vehicular/profundo)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="descReporte">Descripción Detallada</label>
+                    <textarea id="descReporte" rows="3" placeholder="Describe el problema..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="dirReporte" id="label-direccion">Ubicación / Dirección Exacta</label>
+                    <input type="text" id="dirReporte" placeholder="Calle y número o referencias" required>
+                </div>
+                <div class="form-group" id="grupo-entre-calles">
+                    <label for="entreCalles">¿Entre qué calles se ubica?</label>
+                    <input type="text" id="entreCalles" placeholder="Ej: Entre Calle Hidalgo y Calle Morelos">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" onclick="cerrarModalReporte()">Cancelar</button>
+                    <button type="submit" class="menu-button" style="width: auto; margin-top: 0;">Enviar Reporte</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL DE SOLICITUD DE CONSTANCIA -->
+    <div class="modal-overlay" id="modalConstancia">
+        <div class="modal-box">
+            <h3>Solicitud de Constancia Domiciliaria</h3>
+            <form id="formConstancia" onsubmit="procesarFormularioConstancia(event)">
+                <div class="form-group">
+                    <label for="constCalle">Confirmar o Modificar Dirección/Calle</label>
+                    <input type="text" id="constCalle" placeholder="Calle, número y colonia" required>
+                </div>
+                <div class="form-group">
+                    <label for="constMotivo">Motivo de la Solicitud</label>
+                    <select id="constMotivo" required>
+                        <option value="Trámite Laboral / Empleo">Trámite Laboral / Empleo</option>
+                        <option value="Apertura de Cuenta Bancaria">Apertura de Cuenta Bancaria</option>
+                        <option value="Inscripción Escolar">Inscripción Escolar</option>
+                        <option value="Trámite Oficial / Gubernamental">Trámite Oficial / Gubernamental</option>
+                        <option value="Otros fines personales">Otros fines personales</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" onclick="cerrarModalConstanciaForm()">Cancelar</button>
+                    <button type="submit" class="menu-button" style="width: auto; margin-top: 0;">Generar Constancia</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026. Gestión ciudadana. Derechos reservados VIAR - COPACI Granjas Guadalupe</p>
+    </footer>
+
+    <script>
+        async function cargarProyectoNativoLocal() {
+            try {
+                const respuestaCss = await fetch('estilos.css');
+                const textoCss = await respuestaCss.text();
+                document.getElementById('estilos-institucionales-target').innerHTML = textoCss;
+                
+                const respuestaJs = await fetch('control.js');
+                const textoJs = await respuestaJs.text();
+                const scriptElement = document.createElement('script');
+                scriptElement.text = textoJs;
+                document.body.appendChild(scriptElement);
+            } catch (e) {
+                console.log("Cargador alternativo activado.");
+            }
+        }
+        window.addEventListener('DOMContentLoaded', cargarProyectoNativoLocal);
+    </script>
+</body>
+</html>
